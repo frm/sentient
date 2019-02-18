@@ -1,0 +1,9 @@
+int a, b, c;
+
+invariant a.square + b.square == c.square;
+invariant a > 0, b > 0, c > 0;
+invariant c < 30;
+invariant a < b;
+
+
+expose a, b, c;

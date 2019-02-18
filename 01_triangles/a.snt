@@ -1,0 +1,24 @@
+# note: this solution is intentionally overcomplicated
+# to play around with array only solution generation.
+array5<int> a, b, c;
+
+0.upto(4, function^ (i) {
+  invariant a[i].square + b[i].square == c[i].square;
+  invariant a[i] > 0, b[i] > 0, c[i] > 0;
+});
+
+# avoid cases where a = 3, b = 4 and b = 4, a = 3
+# being considered different solutions.
+# a cannot ever be equal to b in a valid solution
+# as there is no c integer where a.square + a.square = c.square
+# i actually used sentient to solve this. nice.
+a.each(function^ (a_elem, a_index) {
+  b.each(function^ (b_elem, b_index) {
+    invariant a_elem != b_elem;
+  });
+});
+
+invariant a.uniq?;
+invariant b.uniq?;
+
+expose a, b, c;
